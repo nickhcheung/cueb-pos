@@ -1,0 +1,10 @@
+<h1 class="title">Employees</h1>
+<div class="container centered">
+  <% @employees.each do |emp| %>
+    <div class="emp">
+      <h4 class="emp-name"><%= emp.name %></h4>
+      <%= link_to "Delete", employee_path(emp.id), method: :delete, class: "btn btn-danger emp-delete", data: { confirm: "Are you sure you would like to delete this employee?" } %>
+    </div>
+  <% end %>
+  <%= link_to "Add", new_employee_path, class: "btn btn-success add" %>
+</div>
