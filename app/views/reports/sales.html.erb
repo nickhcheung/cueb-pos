@@ -1,0 +1,16 @@
+<h1 class="title">SALES</h1>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Invoice #</th>
+    <th>Total</th>
+    <th>Time</th>
+  </tr>
+  <% @sales.each do |s| %>
+    <tr>
+      <td><%= s.id %></td>
+      <td><%= number_to_currency(s.total) %></td>
+      <td><%= s.created_at.strftime("%l:%M%p - %a, %b %d %Y") %></td>
+    </tr>
+  <% end %>
+</table>
