@@ -1,5 +1,5 @@
 <h4>Search Inventory</h4>
-<%= form_tag inventories_search_path, :method => "get" do %>
+<%= form_for inventories_search_path, :method => "get" do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search" %>
   <%= submit_tag "SEARCH", :name => nil, class: "btn btn-success" %>
 <% end %>
