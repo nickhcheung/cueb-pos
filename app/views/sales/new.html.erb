@@ -11,15 +11,27 @@
   <div class="col-sm-8">
     <table class="table table-bordered">
       <tr>
+        <th>Brand</th>
         <th>Style</th>
+        <th>Category</th>
+        <th>Color</th>
+        <th>Size</th>
         <th>Price</th>
       </tr>
       <tr>
         <% if @item %>
+          <td><%= Brand.where(id: @item.brand_id).first.name %></td>
           <td><%= @item.style %></td>
+          <td><%= @item.category %></td>
+          <td><%= @item.color %></td>
+          <td><%= @item.size %></td>
           <td><%= number_to_currency(@item.price) %></td>
         <% else %>
-          <td>No Item</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
           <td>$0</td>
         <% end %>
       </tr>
