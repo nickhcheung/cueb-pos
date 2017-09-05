@@ -1,0 +1,10 @@
+<h1 class="title">Brands</h1>
+<div class="container centered">
+  <% @brands.each do |brand| %>
+    <div class="brand">
+      <h4 class="brand-name"><%= brand.name %></h4>
+      <%= link_to "Delete", brand_path(brand.id), method: :delete, class: "btn btn-danger brand-delete", data: { confirm: "Are you sure you would like to delete this Brand?" } %>
+    </div>
+  <% end %>
+  <%= link_to "Add", new_brand_path, class: "btn btn-success add" %>
+</div>

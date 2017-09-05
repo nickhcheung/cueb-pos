@@ -12,7 +12,7 @@ class EmployeesController < ApplicationController
     @employee.name = params[:employee][:name]
 
     if @employee.save
-      flash[:notice] = "#{@employee.name} has been added!"
+      flash[:notice] = "\"#{@employee.name}\" has been added!"
       redirect_to employees_path
     else
       flash.now[:alert] = "There was an error creating the Employee. Please try again."

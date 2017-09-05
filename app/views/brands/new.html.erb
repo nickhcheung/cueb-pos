@@ -1,0 +1,8 @@
+<h4>Add a Brand</h4>
+<%= form_for @brand do |f| %>
+  <div class="form-group">
+    <%= f.label :name, class: "sr-only" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter Brand" %>
+  </div>
+  <%= f.submit "Add", class: "btn btn-success" %>
+<% end %>

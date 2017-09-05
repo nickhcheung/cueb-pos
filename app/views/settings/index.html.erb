@@ -1,12 +1,12 @@
 <h1 class="title">CUEB POS</h1>
 <div class="container centered">
   <div>
-    <%= link_to "BRANDS", "#", class: "btn btn-info btn-lg" %>
+    <%= link_to "BRANDS", brands_path, class: "btn btn-info btn-lg" %>
   </div>
   <div>
     <%= link_to "EMPLOYEES", employees_path, class: "btn btn-info btn-lg" %>
   </div>
   <div>
-    <%= link_to "RESET DATA", "#", class: "btn btn-info btn-lg" %>
+    <%= link_to "RESET DATA", settings_path, method: :post, :data => {:confirm => 'Are you sure you would like to reset all data?'}, class: "btn btn-info btn-lg" %>
   </div>
 </div>
