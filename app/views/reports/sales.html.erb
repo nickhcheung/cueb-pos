@@ -4,12 +4,14 @@
   <tr>
     <th>Invoice #</th>
     <th>Total</th>
+    <th>Employee</th>
     <th>Time</th>
   </tr>
   <% @sales.each do |s| %>
     <tr>
       <td><%= s.id %></td>
       <td><%= number_to_currency(s.total) %></td>
+      <td><%= Employee.where(id: s.employee_id).first.name %></td>
       <td><%= s.created_at.strftime("%l:%M%p - %a, %b %d %Y") %></td>
     </tr>
   <% end %>
