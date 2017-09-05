@@ -10,6 +10,12 @@ Rails.application.routes.draw do
 
   resources :inventories, only: [:index, :new, :create]
 
+  resources :reports, only: [:index]
+
+  get 'reports/sales'
+
+  get 'reports/sold'
+
   get "inventories/search" => "inventories#search"
 
   root "welcome#index"
