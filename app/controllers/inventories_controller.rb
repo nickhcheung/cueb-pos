@@ -7,13 +7,7 @@ class InventoriesController < ApplicationController
   end
 
   def create
-    @inventory = Inventory.new
-    @inventory.style = params[:inventory][:style]
-    @inventory.category = params[:inventory][:category]
-    @inventory.color = params[:inventory][:color]
-    @inventory.size = params[:inventory][:size]
-    @inventory.price = params[:inventory][:price]
-    @inventory.brand_id = params[:inventory][:brand_id]
+    @inventory = Inventory.new(inventory_params)
 
     if @inventory.save
       flash[:notice] = "\"#{@inventory.style}\" has been added!"
@@ -22,5 +16,19 @@ class InventoriesController < ApplicationController
       flash.now[:alert] = "There was an error adding the item. Please try again."
       render :new
     end
+  end
+
+  def search
+    if params[:search]
+      @inventories = Inventory.where("style LIKE ? OR category LIKE ? OR size LIKE ? OR color LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @inventories = [];
+    end
+  end
+
+  private
+
+  def inventory_params
+    params.require(:inventory).permit(:style, :category, :brand_id, :price, :size, :color)
   end
 end
