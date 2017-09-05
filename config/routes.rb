@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'settings' => "settings#index"
 
+  resources :brands, only: [:index, :new, :create, :destroy]
+
   resources :employees, only: [:index, :new, :create, :destroy]
 
   root "welcome#index"
