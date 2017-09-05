@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :employees, only: [:index, :new, :create, :destroy]
 
+  resources :sales, only: [:new, :create]
+
   resources :inventories, only: [:index, :new, :create]
 
   get "inventories/search" => "inventories#search"

@@ -1,0 +1,76 @@
+<h1 class="title">NEW SALE</h1>
+<div class="row">
+  <div class="col-sm-4">
+    <%= form_for new_sale_path, :method => "get" do %>
+      <%= select_tag "id", options_from_collection_for_select(@inventories, :id, :style), prompt: "Select
+      Item", :required => true %>
+      <%= number_field_tag :discount, params[:discount], placeholder: "Discount (%)" %>
+      <%= submit_tag "Add", :name => nil, class: "btn btn-success" %>
+    <% end %>
+  </div>
+  <div class="col-sm-8">
+    <table class="table table-bordered">
+      <tr>
+        <th>Style</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+        <% if @item %>
+          <td><%= @item.style %></td>
+          <td><%= number_to_currency(@item.price) %></td>
+        <% else %>
+          <td>No Item</td>
+          <td>$0</td>
+        <% end %>
+      </tr>
+    </table>
+    <table class="table table-bordered">
+      <% if @item %>
+        <tr>
+          <td>Discount:</td>
+          <td><%= number_to_currency(@discount) %></td>
+        </tr>
+        <tr>
+          <td>Subtotal:</td>
+          <td><%= number_to_currency(@discounted_price) %></td>
+        </tr>
+        <tr>
+          <td>Tax:</td>
+          <td><%= number_to_currency(@discounted_price * 0.12) %></td>
+        </tr>
+        <tr>
+          <td class="red">Total:</td>
+          <td class="red"><%= number_to_currency(@total) %></td>
+        </tr>
+      <% else %>
+        <tr>
+          <td>Discount:</td>
+          <td>$0.00</td>
+        </tr>
+        <tr>
+          <td>Subtotal:</td>
+          <td>$0.00</td>
+        </tr>
+        <tr>
+          <td>Tax:</td>
+          <td>$0.00</td>
+        </tr>
+        <tr>
+          <td class="red">Total:</td>
+          <td class="red">$0.00</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <% if @item && @total %>
+    <%= form_for @sale do |f| %>
+      <div class="form-group">
+        <%= f.label :employee_id, class: "sr-only" %>
+        <%= f.collection_select :employee_id, @employees, :id, :name, include_blank: "Select Employee", class: "form-control", :required => true %>
+          <%= f.hidden_field :inventory_id, :value => @item.id %>
+          <%= f.hidden_field :total, :value => @total %>
+      </div>
+      <%= f.submit "Process", class: "btn btn-success" %>
+    <% end %>
+  <% end %>
+</div>
