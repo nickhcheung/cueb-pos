@@ -20,7 +20,7 @@ class InventoriesController < ApplicationController
 
   def search
     if params[:search]
-      @inventories = Inventory.where("style LIKE ? OR category LIKE ? OR size LIKE ? OR color LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+      @inventories = Inventory.where("style ILIKE ? OR category ILIKE ? OR size ILIKE ? OR color ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     else
       @inventories = [];
     end
